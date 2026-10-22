@@ -248,7 +248,7 @@ export default function App() {
               </dl>
               {notes.map((t, i) => <p key={i} className="note">{t}</p>)}
               <div className="actions">
-                <a className="btn wa" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Send this estimate to a CA on WhatsApp</a>
+                <a className="btn wa" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Send this estimate to us</a>
               </div>
             </div>
           )}

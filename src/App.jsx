@@ -4,6 +4,8 @@ import { calcMsme, classify, SIZE_LABEL, money, fmt } from './calc.js';
 import { SiteHeader, SiteFooter } from './SiteChrome.jsx';
 import { Hero, Definition, Incentives, Ceilings, Examples, Compare, Support, Process, Faq, Sources } from './Sections.jsx';
 
+const WHATSAPP_BASE = 'https://wa.me/919426049084';
+
 const ALL = districts
   .flatMap((d) => [
     ...d.A.map((t) => ({ taluka: t, district: d.district, category: 'A' })),
@@ -101,7 +103,6 @@ export default function App() {
   const r = useMemo(() => calcMsme(input), [category, selected, pm, efci, loan, rate, tenure, morat, power, male, female, disabled, basic, woman, firstGen, scst]);
   const size = classify(pm);
   const notes = r.eligible ? notesFor(r, input) : [];
-  const [copied, setCopied] = useState(false);
 
   const loadExample = (x) => {
     setQuery(''); setPicked(null); setOverride(x.category); setSelected(x.sector === 'selected');
@@ -110,14 +111,30 @@ export default function App() {
     setDisabled(x.employeesDisabled); setBasic(x.avgBasicDA); setWoman(x.womanOwned); setFirstGen(x.firstGenOrStartup); setScst(x.scst);
     document.getElementById('estimator')?.scrollIntoView({ behavior: 'smooth' });
   };
-  const copyEstimate = async () => {
-    if (!r.eligible) return;
-    const text = [
-      `MSME subsidy estimate (Category ${category}${picked ? `, ${picked.taluka}` : ''}, ${SIZE_LABEL[size]}, EFCI ₹${fmt(efci, 2)} Cr)`,
-      `Capital subsidy: ${money(r.totals.capital)}`, `Interest subsidy: ${money(r.totals.interest)}`, `Power tariff: ${money(r.totals.power)}`,
-      `Combined within ceilings: ${money(r.totals.combined)}`, `EPF (5 yrs): ${money(r.epf.total)}`, `Total: ${money(r.grandTotal)}`,
-    ].join('\n');
-    try { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { window.prompt('Copy this estimate:', text); }
+  const whatsappUrl = () => {
+    if (!r.eligible) return WHATSAPP_BASE;
+    const lines = [
+      'Hi Mistry & Shah, I used the MSME subsidy estimator (Viksit Gujarat Industrial Policy 2026) and would like a CA to review my eligibility.',
+      '',
+      '*Inputs*',
+      `Taluka category: ${category}${picked ? ` (${picked.taluka}, ${picked.district})` : ''}`,
+      `Sector: ${selected ? 'Selected thrust sector' : 'General manufacturing'}`,
+      `Enterprise: ${SIZE_LABEL[size]} (plant and machinery ₹${fmt(pm, 2)} Cr)`,
+      `Eligible fixed capital investment: ₹${fmt(efci, 2)} Cr`,
+      `Term loan: ₹${fmt(loan, 2)} Cr at ${rate}% for ${tenure} yrs (moratorium ${morat} yr)`,
+      `Power: ${fmt(power, 1)} lakh units/yr`,
+      `New employees: ${male} male, ${female} female, ${disabled} specially-abled; avg basic + DA ₹${fmt(basic)}`,
+      `Promoter: ${[woman && 'woman', firstGen && 'first-generation/startup', scst && 'SC/ST'].filter(Boolean).join(', ') || 'none of the special categories'}`,
+      '',
+      '*Estimate over 5 years*',
+      `Capital subsidy: ${money(r.totals.capital)}`,
+      `Interest subsidy: ${money(r.totals.interest)}`,
+      `Power tariff: ${money(r.totals.power)}`,
+      `Combined within ceilings: ${money(r.totals.combined)} (${r.effectivePct.toFixed(1)}% of EFCI, ceiling ${r.overallPct}%)`,
+      `EPF reimbursement: ${money(r.epf.total)}`,
+      `*Total quantified: ${money(r.grandTotal)}*`,
+    ];
+    return `${WHATSAPP_BASE}?text=${encodeURIComponent(lines.join('\n'))}`;
   };
 
   return (
@@ -231,8 +248,7 @@ export default function App() {
               </dl>
               {notes.map((t, i) => <p key={i} className="note">{t}</p>)}
               <div className="actions">
-                <button type="button" className="btn" onClick={copyEstimate}>{copied ? 'Copied ✓' : 'Copy estimate'}</button>
-                <button type="button" className="btn ghost" onClick={() => window.print()}>Print</button>
+                <a className="btn wa" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Send this estimate to a CA on WhatsApp</a>
               </div>
             </div>
           )}

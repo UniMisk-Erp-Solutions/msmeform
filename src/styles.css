@@ -144,3 +144,4 @@ td.strong { font-weight: 600; color: var(--navy); }
 .ft-two p { margin: 0 0 12px; font-size: 12.5px; line-height: 1.7; color: #333; max-width: 1200px; }
 .ft-two .copy { text-align: right; color: var(--navy); font-weight: 500; font-size: 16px; }
 @media print { .actions, .btn, .site-header, .site-footer { display: none; } }
+a.btn { display: inline-block; text-decoration: none; text-align: center; }

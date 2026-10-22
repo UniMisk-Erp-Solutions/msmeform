@@ -1,9 +1,4 @@
 const SITE = 'https://www.mistryandshah.com';
-const MENU = [
-  ['HOME', '/'], ['ABOUT US', '/aboutus/'], ['SERVICES', '/services-2/'], ['TEAM', '/team/'], ['CAREER', '/career/'],
-  ['EVENTS', '/events/'], ['BLOGS', '/blogs/'], ['CONTACT US', '/contactus/'],
-];
-
 export function SiteHeader() {
   return (
     <header className="site-header">
@@ -13,10 +8,6 @@ export function SiteHeader() {
       </div>
       <div className="mainbar">
         <a className="logo" href={SITE + '/'}><img src="/theme/Untitled-1-1-1.png" alt="Mistry & Shah, Chartered Accountants" width="146" height="50" /></a>
-        <nav className="menu" aria-label="Site">
-          {MENU.map(([t, h]) => <a key={t} href={SITE + h}>{t}</a>)}
-        </nav>
-        <a className="login" href="https://mistryandshah.caoasoftware.com/Login.aspx">Login</a>
       </div>
     </header>
   );

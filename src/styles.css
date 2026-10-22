@@ -15,13 +15,8 @@ img { max-width: 100%; }
 .site-header { background: var(--white); }
 .topbar { background: var(--soft-56); display: flex; justify-content: center; gap: clamp(16px, 4vw, 48px); flex-wrap: wrap; padding: 14px 16px; font-size: 18px; }
 .topbar a { display: inline-flex; align-items: center; gap: 10px; color: #000; text-decoration: none; }
-.mainbar { max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 4vw, 64px); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.mainbar { max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 4vw, 64px); display: flex; align-items: center; justify-content: flex-start; gap: 16px; flex-wrap: wrap; }
 .logo img { display: block; height: 50px; width: auto; }
-.menu { display: flex; flex-wrap: wrap; justify-content: center; }
-.menu a { padding: 15px 18px; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--navy); text-decoration: none; }
-.menu a:hover { color: var(--red); }
-.login { background: var(--soft); color: var(--navy); font-size: 18px; padding: 12px 20px; border-radius: 8px; text-decoration: none; }
-.login:hover { background: var(--navy); color: #fff; }
 
 /* ---------- layout ---------- */
 .page { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 8px 16px 72px; }

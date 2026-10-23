@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import districts from './talukas.json';
 import { calcMsme, classify, SIZE_LABEL, money, fmt } from './calc.js';
-import { SiteHeader, SiteFooter } from './SiteChrome.jsx';
 import { Hero, Definition, Incentives, Ceilings, Examples, Compare, Support, Process, Faq, Sources } from './Sections.jsx';
 
 const WHATSAPP_BASE = 'https://wa.me/919426049084';
@@ -139,7 +138,6 @@ export default function App() {
 
   return (
     <>
-    <SiteHeader />
     <main className="page">
       <Hero />
       <Definition />
@@ -290,7 +288,6 @@ export default function App() {
       <Faq />
       <Sources />
     </main>
-    <SiteFooter />
     </>
   );
 }

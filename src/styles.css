@@ -11,13 +11,6 @@ body { margin: 0; overflow-x: clip; background: var(--white); color: var(--text)
 a { color: inherit; }
 img { max-width: 100%; }
 
-/* ---------- header ---------- */
-.site-header { background: var(--white); }
-.topbar { background: var(--soft-56); display: flex; justify-content: center; gap: clamp(16px, 4vw, 48px); flex-wrap: wrap; padding: 14px 16px; font-size: 18px; }
-.topbar a { display: inline-flex; align-items: center; gap: 10px; color: #000; text-decoration: none; }
-.mainbar { max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 4vw, 64px); display: flex; align-items: center; justify-content: flex-start; gap: 16px; flex-wrap: wrap; }
-.logo img { display: block; height: 50px; width: auto; }
-
 /* ---------- layout ---------- */
 .page { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 8px 16px 72px; }
 h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.2; font-weight: 700; color: var(--navy); margin: 0 0 12px; }
@@ -125,18 +118,5 @@ td.strong { font-weight: 600; color: var(--navy); }
 .sources li { margin: 8px 0; }
 .sources b { color: var(--navy); }
 
-/* ---------- footer ---------- */
-.site-footer { margin-top: 24px; }
-.ft-one { background: var(--navy) url('/theme/Group-15.webp') center / cover; color: #fff; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 28px clamp(16px, 4vw, 64px); }
-.ft-text { display: grid; font-size: 15px; }
-.ft-text span { opacity: .85; font-size: 13px; }
-.ft-join { display: flex; align-items: center; gap: 14px; font-size: 18px; }
-.ft-join a { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.6); border-radius: 50%; color: #fff; }
-.ft-join a:hover { background: #fff; color: var(--navy); }
-.ft-scan { color: #fff; font-size: 14px; border: 1px solid rgba(255,255,255,.6); padding: 8px 18px; border-radius: 999px; text-decoration: none; }
-.ft-scan:hover { background: #fff; color: var(--navy); }
-.ft-two { background: var(--grey); padding: 24px clamp(16px, 4vw, 64px) 20px; }
-.ft-two p { margin: 0 0 12px; font-size: 12.5px; line-height: 1.7; color: #333; max-width: 1200px; }
-.ft-two .copy { text-align: right; color: var(--navy); font-weight: 500; font-size: 16px; }
-@media print { .actions, .btn, .site-header, .site-footer { display: none; } }
+@media print { .actions, .btn { display: none; } }
 a.btn { display: inline-block; text-decoration: none; text-align: center; }

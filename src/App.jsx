@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import districts from './talukas.json';
 import { calcMsme, classify, SIZE_LABEL, money, fmt } from './calc.js';
 import { Hero, Definition, Incentives, Ceilings, Examples, Compare, Support, Process, Faq, Sources } from './Sections.jsx';
@@ -26,14 +26,23 @@ function searchTalukas(q, limit = 12) {
 }
 
 function NumberField({ label, value, onChange, suffix, hint, step = 1 }) {
+  // Keep the typed text locally so the field can be emptied with backspace; an empty field counts as 0.
+  const [text, setText] = useState(String(value));
+  useEffect(() => {
+    setText((t) => (Number(t === '' ? 0 : t) === value ? t : String(value)));
+  }, [value]);
   return (
     <label className="field">
       <span className="field-label">{label}</span>
       <div className="field-box">
         <input
-          type="number" inputMode="decimal" min={0} step={step}
-          value={Number.isFinite(value) ? value : ''}
-          onChange={(e) => onChange(e.target.value === '' ? 0 : Number(e.target.value))}
+          type="number" inputMode="decimal" min={0} step={step} value={text}
+          onChange={(e) => {
+            const v = e.target.value.replace(/^0+(?=d)/, '');
+            setText(v);
+            const n = v === '' ? 0 : Number(v);
+            onChange(Number.isFinite(n) ? n : 0);
+          }}
         />
         <span className="suffix">{suffix}</span>
       </div>

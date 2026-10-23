@@ -123,3 +123,6 @@ a.btn { display: inline-block; text-decoration: none; text-align: center; }
 .example { display: flex; flex-direction: column; }
 .example .btn { margin-top: auto; align-self: flex-start; }
 .example .lines { margin-bottom: 14px; }
+.field-box input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+.field-box input[type=number]::-webkit-outer-spin-button,
+.field-box input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }

@@ -140,7 +140,7 @@ export function Examples({ onLoad }) {
                 <div><dt>EPF, 5 years</dt><dd>{money(r.epf.total)}</dd></div>
                 <div className="total"><dt>Total</dt><dd>{money(r.grandTotal)}</dd></div>
               </dl>
-              <button type="button" className="btn" onClick={() => onLoad(ex.input)}>Load into estimator</button>
+              <button type="button" className="btn" onClick={() => onLoad(ex.input)}>Check your eligibility</button>
             </div>
           );
         })}

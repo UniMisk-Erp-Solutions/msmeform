@@ -120,3 +120,6 @@ td.strong { font-weight: 600; color: var(--navy); }
 
 @media print { .actions, .btn { display: none; } }
 a.btn { display: inline-block; text-decoration: none; text-align: center; }
+.example { display: flex; flex-direction: column; }
+.example .btn { margin-top: auto; align-self: flex-start; }
+.example .lines { margin-bottom: 14px; }

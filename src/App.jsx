@@ -145,7 +145,7 @@ export default function App() {
       <Ceilings />
 
       <section id="estimator" className="block">
-        <h2>MSME subsidy estimator</h2>
+        <h2>MSME Subsidy Estimator</h2>
         <p className="sub wide">
           Applies the percentages, periods, component caps, yearly ceilings and overall ceiling of the scheme to your numbers. An estimate
           for planning only; the sanctioning authority's assessment decides the claim.
